@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+
+<h4>{{post.titulo}}</h4>
+
+{% if post.portada %}
+    <img src="{{post.portada.url}}" alt="">
+{% endif %}
+
+{{post.categoria}}
+
+{{post.contenido}}
+</div>
+
+<div class="container">
+    <h4>Comentarios...</h4>
+    <div class="container">
+        {% if not post.comentarios.all %}
+            No han comentado este Post
+        {% else %}
+            {% for comentario in post.comentarios.all %}
+            <p><strong>{{comentario.nombre}}</strong></p>
+            <p>{{comentario.mensaje}}</p>
+            <p><small>{{comentario.fechaComentario}}</small></p>
+            <hr>
+            {% endfor %}
+        {% endif %}
+        <a href="{% url 'comentario' post.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+{% endblock %}

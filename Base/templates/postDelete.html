@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% if user.id == post.usuario.id %}
+<div class="container text-center">
+
+<form method="post">{% csrf_token %}
+    <h4>Estás seguro que deseas borrar este post?</h4>
+    <p>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </p>
+</form>
+
+</div>
+{% else %}
+<div class="container">
+<h4>No tienes acceso a esta pagina!</h4>
+</div>
+{% endif %}
+{% endblock %}
